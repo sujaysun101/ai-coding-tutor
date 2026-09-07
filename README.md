@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PHOSPHOR — night school for code
 
-## Getting Started
+An AI coding tutor that looks like a CRT in an empty computer lab, not a React + Tailwind dashboard.
 
-First, run the development server:
+The stack is **SvelteKit 5**, **hand-rolled CSS**, and the **Anthropic** API. The visual language borrows from real phosphor terminals: [Phosphor UI](https://github.com/sektant1/phosphor-ui) palettes (P1 green, P3 amber, P7 cyan), [AmberConsole](https://github.com/DutchDiederik/AmberConsole) industrial amber plasma, and [Afterglow CRT](https://github.com/HauntedCrusader/afterglow-crt) scanlines, vignette, and a slow raster beam.
+
+## Run locally
 
 ```bash
+npm install
+cp .env.example .env
+# optional: set ANTHROPIC_API_KEY for the live tutor
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Without an API key the bench still teaches in **local demo mode**, so you can use the UI immediately.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Use it
 
-## Learn More
+1. Pick a language and level.
+2. Ask a question. Paste a failing snippet if you have one.
+3. Transmit (or press Ctrl/⌘ + Enter).
+4. Switch phosphor palettes from the top bar.
 
-To learn more about Next.js, take a look at the following resources:
+Lessons stay in this browser via `localStorage`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run dev      # night school on :3000
+npm run build    # Vercel / adapter-vercel
+npm run check    # svelte-check
+npm run test     # tutor JSON parser
+```
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project uses `@sveltejs/adapter-vercel`. Set `ANTHROPIC_API_KEY` in the host environment for live lessons.
