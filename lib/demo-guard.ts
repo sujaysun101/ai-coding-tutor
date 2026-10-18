@@ -45,11 +45,11 @@ function slidingWindowAllow(
 
 function prune(store: Map<string, HitList>, windowMs: number, now: number) {
   if (store.size < 5_000) return;
-  for (const [key, hits] of store) {
+  store.forEach((hits, key) => {
     const recent = hits.filter((timestamp) => now - timestamp < windowMs);
     if (recent.length === 0) store.delete(key);
     else store.set(key, recent);
-  }
+  });
 }
 
 function getUpstashLimiters(): { minute: Ratelimit; day: Ratelimit } | null {
