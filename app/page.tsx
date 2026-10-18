@@ -1,5 +1,6 @@
 ﻿"use client";
 import { useState } from "react";
+import { CODE_MAX, LANGUAGES, LEVELS, QUESTION_MAX } from "@/lib/tutor-limits";
 
 interface TutorResponse {
   explanation: string;
@@ -10,9 +11,6 @@ interface TutorResponse {
   difficulty: string;
   concepts: string[];
 }
-
-const LANGUAGES = ["JavaScript", "Python", "TypeScript", "HTML/CSS", "React", "SQL", "Java", "C++"];
-const LEVELS = ["beginner", "intermediate", "advanced"];
 
 export default function AICodeTutor() {
   const [question, setQuestion] = useState("");
@@ -70,11 +68,11 @@ export default function AICodeTutor() {
           </div>
           <div className="mb-4">
             <label className="block text-sm font-semibold text-gray-700 mb-2">Your Question *</label>
-            <textarea value={question} onChange={(e) => setQuestion(e.target.value)} placeholder="e.g., What is a closure? Why does my loop not work? How do I fetch data from an API?" rows={3} required className="w-full border border-gray-300 rounded-xl p-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-violet-400" />
+            <textarea value={question} onChange={(e) => setQuestion(e.target.value)} maxLength={QUESTION_MAX} placeholder="e.g., What is a closure? Why does my loop not work? How do I fetch data from an API?" rows={3} required className="w-full border border-gray-300 rounded-xl p-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-violet-400" />
           </div>
           <div className="mb-6">
             <label className="block text-sm font-semibold text-gray-700 mb-2">Your Code (optional)</label>
-            <textarea value={code} onChange={(e) => setCode(e.target.value)} placeholder="Paste your code here if you have a specific problem..." rows={6} className="w-full font-mono text-sm border border-gray-300 rounded-xl p-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-violet-400 bg-gray-50" />
+            <textarea value={code} onChange={(e) => setCode(e.target.value)} maxLength={CODE_MAX} placeholder="Paste your code here if you have a specific problem..." rows={6} className="w-full font-mono text-sm border border-gray-300 rounded-xl p-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-violet-400 bg-gray-50" />
           </div>
           <button type="submit" disabled={loading || !question.trim()} className="w-full bg-violet-600 hover:bg-violet-700 disabled:bg-gray-400 text-white font-semibold py-3 rounded-xl transition-colors">
             {loading ? "Tutor is thinking..." : "Ask Your Tutor"}
